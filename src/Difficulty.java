@@ -9,7 +9,7 @@ public class Difficulty extends JFrame {
     public enum rank {
         Beginner,
         Intermediate,
-        Advanced;
+        Advanced,
     }
 
     public rank rank;
@@ -46,7 +46,8 @@ public class Difficulty extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 rank = rank.Beginner;
-                new Game();
+                new Game(rank.Beginner);
+                starterFrame.dispose();
             }
         });
 
@@ -58,7 +59,8 @@ public class Difficulty extends JFrame {
                 setVisible(false);
                 rank = rank.Intermediate;
 
-                new Game();
+                new Game(rank.Intermediate);
+                starterFrame.dispose();
             }
         });
 
@@ -70,7 +72,8 @@ public class Difficulty extends JFrame {
                 setVisible(false);
                 rank = rank.Advanced;
 
-                new Game();
+                new Game(rank.Advanced);
+                starterFrame.dispose();
             }
         });
 
@@ -84,6 +87,7 @@ public class Difficulty extends JFrame {
         startGame.add(intermediate);
         startGame.add(advanced);
         startGame.add(Box.createRigidArea(new Dimension(0,5)));
+
     }
 
 }

@@ -1,37 +1,53 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Cell extends JPanel implements MouseListener {
 
     private JLabel text;
     private boolean isBomb;
     public int num;
+    private static int bombCount;
+    private static int emptyCount;
+    public JFrame frame;
+    public JPanel panel2;
 
-
-    public Cell() {
+    public Cell(Difficulty.rank rank) {
 
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         text = new JLabel("x");
         num = 0;
         add(text);
         addMouseListener(this);
-        randomize();
+
+        switch (rank) {
+            case Beginner:
+                if (new Random().nextInt(8) == 0) {
+                    setBomb(true);
+                }
+                break;
+            case Intermediate: {
+                if (new Random().nextInt(5) == 0)
+                    setBomb(true);
+            }
+            break;
+            case Advanced:
+                if (new Random().nextInt(3) == 0) {
+                    setBomb(true);
+                }
+                break;
+        }
     }
+
 
     public void setText(String s) {
         text.setText(s);
     }
 
-    private void randomize() {
-        if (new Random().nextInt(8) == 0)
-            setBomb(true);
-    }
 
     public void setNum(Cell t) {
         if (t.isBomb())
@@ -44,6 +60,12 @@ public class Cell extends JPanel implements MouseListener {
 
     public void setBomb(boolean isBomb) {
         this.isBomb = isBomb;
+        bombCount++;
+
+    }
+
+    public static int getBombCount() {
+        return bombCount;
     }
 
     private boolean check() {
@@ -51,9 +73,16 @@ public class Cell extends JPanel implements MouseListener {
             setBackground(Color.RED);
             setText("*");
             new Lose();
+            bombCount =0;
+
         } else {
+            emptyCount++;
             setBackground(Color.GREEN);
             setText(num + "");
+            if(Value.I * Value.J -  emptyCount== getBombCount()){
+                new Lose();
+
+            }
         }
 
         sh();

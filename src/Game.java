@@ -1,5 +1,3 @@
-
-
 import java.awt.GridLayout;
 import java.*;
 import javax.swing.*;
@@ -8,22 +6,21 @@ public class Game extends JFrame{
     Cell[][] cells;
     GridLayout layout;
     JPanel panel;
+    Difficulty.rank rank;
 
 
+    public Game(Difficulty.rank rank) {
 
-    public Game() {
-
-
-
-
-
+        this.rank = rank;
         setSize(Value.I * 50, Value.J * 50);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Minesweeper");
+
+
 
         panel = new JPanel();
+
         layout = new GridLayout(Value.I, Value.J);
         cells = new Cell[Value.I][Value.J];
         panel.setLayout(layout);
@@ -31,9 +28,11 @@ public class Game extends JFrame{
 
         for(int i = 0; i < Value.I; i++) {
             for(int j = 0; j < Value.J; j++) {
-                cells[i][j] = new Cell();
+                cells[i][j] = new Cell(rank);
             }
         }
+
+
         for(int i = 0; i < Value.I; i++) {
             for(int j = 0; j < Value.J; j++) {
                 if(i == 0) {
@@ -52,6 +51,8 @@ public class Game extends JFrame{
                         cells[i][j].setNum(cells[i+1][j+1]);
                         cells[i][j].setNum(cells[i+1][j-1]);
                     }
+
+
                 }else if(j == 0 && i < Value.I - 1 && i > 0) { //left corners
                     cells[i][j].setNum(cells[i-1][j]);
                     cells[i][j].setNum(cells[i+1][j]);
@@ -93,6 +94,14 @@ public class Game extends JFrame{
                 panel.add(cells[i][j]);
             }
         }
+        setTitle("Minesweeper with " + Cell.getBombCount() + " bombs");
+        System.out.println(Cell.getBombCount());
+
+
         add(panel);
+
     }
+
+
+
 }
