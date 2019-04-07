@@ -1,15 +1,21 @@
 import java.awt.GridLayout;
-import java.*;
 import javax.swing.*;
 
 public class Game extends JFrame{
     Cell[][] cells;
+    JFrame gameFrame;
     GridLayout layout;
-    JPanel panel;
+    JLabel numberMines;
+    JPanel panel1;
+    JPanel panel2;
     Difficulty.rank rank;
 
 
     public Game(Difficulty.rank rank) {
+
+        gameFrame = new JFrame("Minesweeper Game");
+        gameFrame.pack();
+        gameFrame.setSize(400,400);
 
         this.rank = rank;
         setSize(Value.I * 50, Value.J * 50);
@@ -17,21 +23,26 @@ public class Game extends JFrame{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        panel1 = new JPanel();
+        gameFrame.add(panel1);
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS));
 
+        numberMines = new JLabel("Minesweeper with " + Cell.getBombCount() + " bombs");
+        panel1.add(numberMines);
 
-        panel = new JPanel();
+        panel2 = new JPanel();
+        gameFrame.add(panel2);
 
         layout = new GridLayout(Value.I, Value.J);
         cells = new Cell[Value.I][Value.J];
-        panel.setLayout(layout);
-        panel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        panel2.setLayout(layout);
+        panel2.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
         for(int i = 0; i < Value.I; i++) {
             for(int j = 0; j < Value.J; j++) {
                 cells[i][j] = new Cell(rank);
             }
         }
-
 
         for(int i = 0; i < Value.I; i++) {
             for(int j = 0; j < Value.J; j++) {
@@ -91,14 +102,15 @@ public class Game extends JFrame{
                     cells[i][j].setNum(cells[i+1][j+1]);
                     cells[i][j].setNum(cells[i+1][j-1]);
                 }
-                panel.add(cells[i][j]);
+                panel2.add(cells[i][j]);
             }
         }
+
         setTitle("Minesweeper with " + Cell.getBombCount() + " bombs");
         System.out.println(Cell.getBombCount());
 
-
-        add(panel);
+        add(panel1);
+        add(panel2);
 
     }
 

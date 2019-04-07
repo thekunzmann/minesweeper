@@ -18,7 +18,7 @@ public class Cell extends JPanel implements MouseListener {
 
     public Cell(Difficulty.rank rank) {
 
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setBorder(BorderFactory.createLineBorder(Color.CYAN));
         text = new JLabel("x");
         num = 0;
         add(text);
@@ -93,9 +93,6 @@ public class Cell extends JPanel implements MouseListener {
         text.setVisible(true);
     }
 
-    public void hd() {
-        text.setVisible(false);
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {

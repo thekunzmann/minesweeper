@@ -6,35 +6,34 @@ import java.awt.event.ActionListener;
 
 public class Lose extends JFrame {
 
-    JPanel panel1;
-    JFrame hello = new JFrame();
-    Difficulty diff;
 
-    JButton button = new JButton();
+    JFrame lose = new JFrame();
+    JPanel losePanel;
+    JButton loseButton = new JButton();
 
 
     public Lose( ) {
 
-        hello.setVisible(true);
+        lose.setVisible(true);
 
         setTitle("YOU LOST!");
-        hello.setPreferredSize(new Dimension(300,300));
-        JOptionPane.showMessageDialog(hello, "The game ended");
-        panel1 = new JPanel();
-        button.setText("Restart the Game");
-        button.addActionListener(new ActionListener() {
+        lose.setPreferredSize(new Dimension(300,300));
+        JOptionPane.showMessageDialog(lose, "The game ended");
+        losePanel = new JPanel();
+        loseButton.setText("Restart the Game");
+        loseButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent event) {
-                hello.dispose();
+                lose.dispose();
                 new Difficulty();
 
             }
 
         });
-        panel1.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        hello.add(button);
-        hello.pack();
-        hello.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 150));
+        losePanel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        lose.add(loseButton);
+        lose.pack();
+        lose.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 150));
 
     }
 }
