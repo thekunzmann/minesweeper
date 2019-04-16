@@ -33,8 +33,18 @@ Our Group Decided to split the Project into 4 Parts: into 4 week iterations
 
 3. In order to define the ranks we are using enum. 
 
-
 # Week 2
+
+**Game**
+
+1. We created a random mechanism that places as many BombCells as needed with the specified rank. This is defined in _Cell Class_. 
+
+2. The system first fills the JPanel with Empty Cells and then changes them randomly for Bombcells. 
+
+
 # Week 3 
+
+
+
 # Week 4 
 
