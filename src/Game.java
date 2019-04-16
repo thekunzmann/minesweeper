@@ -51,10 +51,12 @@ public class Game extends JFrame{
                         cells[i][j].setNum(cells[i+1][j]);
                         cells[i][j].setNum(cells[i][j+1]);
                         cells[i][j].setNum(cells[i+1][j+1]);
+
                     }else if(j == Value.J - 1) { //top right
                         cells[i][j].setNum(cells[i+1][j]);
                         cells[i][j].setNum(cells[i][j-1]);
                         cells[i][j].setNum(cells[i+1][j-1]);
+
                     }else { //top row
                         cells[i][j].setNum(cells[i][j+1]);
                         cells[i][j].setNum(cells[i][j-1]);
@@ -63,22 +65,24 @@ public class Game extends JFrame{
                         cells[i][j].setNum(cells[i+1][j-1]);
                     }
 
-
                 }else if(j == 0 && i < Value.I - 1 && i > 0) { //left corners
                     cells[i][j].setNum(cells[i-1][j]);
                     cells[i][j].setNum(cells[i+1][j]);
                     cells[i][j].setNum(cells[i][j+1]);
                     cells[i][j].setNum(cells[i-1][j+1]);
                     cells[i][j].setNum(cells[i+1][j+1]);
+
                 }else if(i == Value.I-1) {
                     if(j == 0) { //bottom left
                         cells[i][j].setNum(cells[i-1][j]);
                         cells[i][j].setNum(cells[i][j+1]);
                         cells[i][j].setNum(cells[i-1][j+1]);
+
                     }else if(j == Value.J - 1) { //bottom right
                         cells[i][j].setNum(cells[i-1][j]);
                         cells[i][j].setNum(cells[i][j-1]);
                         cells[i][j].setNum(cells[i-1][j-1]);
+
                     }else { //bottom row
                         cells[i][j].setNum(cells[i][j-1]);
                         cells[i][j].setNum(cells[i][j+1]);
@@ -86,12 +90,14 @@ public class Game extends JFrame{
                         cells[i][j].setNum(cells[i-1][j-1]);
                         cells[i][j].setNum(cells[i-1][j+1]);
                     }
+
                 }else if(j == Value.J - 1 && i < Value.I - 1 && i > 0) {
                     cells[i][j].setNum(cells[i-1][j]);
                     cells[i][j].setNum(cells[i+1][j]);
                     cells[i][j].setNum(cells[i][j-1]);
                     cells[i][j].setNum(cells[i-1][j-1]);
                     cells[i][j].setNum(cells[i+1][j-1]);
+
                 }else { //middle stuff
                     cells[i][j].setNum(cells[i-1][j]);
                     cells[i][j].setNum(cells[i][j-1]);
@@ -105,15 +111,10 @@ public class Game extends JFrame{
                 panel2.add(cells[i][j]);
             }
         }
-
         setTitle("Minesweeper with " + Cell.getBombCount() + " bombs");
         System.out.println(Cell.getBombCount());
 
         add(panel1);
         add(panel2);
-
     }
-
-
-
 }

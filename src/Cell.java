@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
 import java.util.Random;
 
 import javax.swing.*;
@@ -13,12 +12,10 @@ public class Cell extends JPanel implements MouseListener {
     public int num;
     private static int bombCount;
     private static int emptyCount;
-    public JFrame frame;
-    public JPanel panel2;
 
     public Cell(Difficulty.rank rank) {
 
-        setBorder(BorderFactory.createLineBorder(Color.CYAN));
+        setBorder(BorderFactory.createLineBorder(Color.gray));
         text = new JLabel("x");
         num = 0;
         add(text);
@@ -81,7 +78,6 @@ public class Cell extends JPanel implements MouseListener {
             setText(num + "");
             if(Value.I * Value.J -  emptyCount== getBombCount()){
                 new Lose();
-
             }
         }
 

@@ -23,13 +23,13 @@ public class Difficulty extends JFrame {
     JButton advanced;
 
 
+
     public Difficulty() { difficultyInterface();
     }
 
     public void difficultyInterface()
 
     {
-
         starterFrame = new JFrame("Minesweeper Game");
         starterFrame.pack();
         starterFrame.setSize(400,400);
@@ -38,10 +38,10 @@ public class Difficulty extends JFrame {
         startGame.setLayout(new BoxLayout(startGame, BoxLayout.PAGE_AXIS));
         startGame.add(Box.createRigidArea(new Dimension(400,20)));
 
-        title = new JLabel("THE MINESWEEPER GAME!");
+        title = new JLabel("THE MINESWEEPER GAME");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(title.getFont().deriveFont(32f));
-        title.setForeground(Color.green);
+        title.setForeground(Color.blue);
 
         chooseRank = new JLabel("Choose your Rank!");
         chooseRank.setAlignmentX(Component.CENTER_ALIGNMENT);
