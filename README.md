@@ -4,7 +4,7 @@ Group members include Tigran, Miguel and Alexander
 
 Our Group Decided to split the Project into 4 Parts: into 4 week iterations 
 
-# Week 1
+## Week 1
 
 **Difficulty Class**
 1. The first task was to design a _difficulty class_ that contains various configurations that are linked to different ranks (difficulties). 
