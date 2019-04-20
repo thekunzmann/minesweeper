@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -12,12 +12,15 @@ public class Cell extends JPanel implements MouseListener {
     public int num;
     private static int bombCount;
     private static int emptyCount;
+    private static int numFlags;
+
 
     public Cell(Difficulty.rank rank) {
 
         setBorder(BorderFactory.createLineBorder(Color.gray));
         text = new JLabel("x");
         num = 0;
+        numFlags = 3;
         add(text);
         addMouseListener(this);
 
@@ -52,8 +55,10 @@ public class Cell extends JPanel implements MouseListener {
     }
 
     public boolean isBomb() {
+
         return isBomb;
     }
+
 
     public void setBomb(boolean isBomb) {
         this.isBomb = isBomb;
@@ -70,13 +75,17 @@ public class Cell extends JPanel implements MouseListener {
             setBackground(Color.RED);
             setText("*");
             new Lose();
-            bombCount =0;
+            bombCount = 0;
 
         } else {
             emptyCount++;
             setBackground(Color.GREEN);
-            setText(num + "");
-            if(Value.I * Value.J -  emptyCount== getBombCount()){
+            if (num > 0) {
+                setText(num + "");
+            } else {
+                setText("");
+            }
+            if (Value.I * Value.J - emptyCount == getBombCount()) {
                 new Lose();
             }
         }
@@ -85,10 +94,23 @@ public class Cell extends JPanel implements MouseListener {
         return isBomb;
     }
 
+
+    public void placeFlag() {
+
+        if (numFlags > 0) {
+            numFlags--;
+            this.setText("Flag");
+            this.setBackground(Color.ORANGE);
+            this.setEnabled(false);
+            if (isBomb()) {
+                bombCount--;
+            }
+        }
+    }
+
     public void sh() {
         text.setVisible(true);
     }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -108,8 +130,13 @@ public class Cell extends JPanel implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (check()) {
-            Cell.this.getTopLevelAncestor();
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            if (check()) {
+                Cell.this.getTopLevelAncestor();
+            }
+        } else if (SwingUtilities.isRightMouseButton(e)) {
+            placeFlag();
+            System.out.println("Number of flags: " + numFlags);
         }
     }
 }

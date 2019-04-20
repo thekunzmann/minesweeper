@@ -100,7 +100,6 @@ public class Difficulty extends JFrame {
         startGame.add(beginner);
         startGame.add(intermediate);
         startGame.add(advanced);
-
     }
 
 }
